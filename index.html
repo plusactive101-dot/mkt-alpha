@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MK-T ALPHA | Quantitative Research & High-Energy Market Terminal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              400: '#34d399',
+              500: '#10b981',
+              accent: '#00f0ff',
+              cyan: '#38bdf8'
+            },
+            dark: {
+              950: '#060911',
+              900: '#0a0f1d',
+              850: '#10172a',
+              800: '#19243c',
+              700: '#273552'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .glass-card {
+      background: rgba(16, 23, 42, 0.78);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 30px -5px rgba(0, 240, 255, 0.15);
+    }
+    .glow-emerald {
+      box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-dark-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- TOP TRADINGVIEW TICKER TAPE -->
+  <div class="border-b border-dark-800 bg-black/50">
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+      {
+        "symbols": [
+          { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
+          { "proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100" },
+          { "proName": "INDEX:DXY", "title": "US Dollar Index" },
+          { "description": "Nvidia", "proName": "NASDAQ:NVDA" },
+          { "description": "Palantir", "proName": "NASDAQ:PLTR" },
+          { "description": "Tesla", "proName": "NASDAQ:TSLA" },
+          { "description": "Bitcoin", "proName": "BINANCE:BTCUSDT" }
+        ],
+        "showSymbolLogo": true,
+        "isTransparent": true,
+        "displayMode": "adaptive",
+        "colorTheme": "dark",
+        "locale": "en"
+      }
+      </script>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="border-b border-dark-800 bg-dark-900/85 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyan-500 via-blue-600 to-emerald-400 flex items-center justify-center text-white font-bold shadow-lg shadow-cyan-500/25">
+          <i class="fa-solid fa-atom text-xl"></i>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-extrabold text-xl tracking-wider text-white mono">MK-T</span>
+            <span class="font-bold text-xl tracking-wide text-cyan-400 mono">ALPHA</span>
+            <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 mono uppercase">
+              Trading Desk
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">Quantitative Market Structure & High-Energy Asymmetry</p>
+        </div>
+      </div>
+
+      <!-- STATUS & LINKS -->
+      <div class="flex items-center space-x-4 text-xs">
+        <div class="flex items-center space-x-2 bg-dark-850 px-3 py-1.5 rounded-full border border-dark-700">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-slate-300 mono" id="lastUpdated">Live Desk Engine</span>
+        </div>
+        <a href="#screener" class="text-slate-400 hover:text-cyan-400 transition hidden md:inline">Screener</a>
+        <a href="#chart-section" class="text-slate-400 hover:text-cyan-400 transition hidden md:inline">Terminal</a>
+        <a href="#research" class="text-slate-400 hover:text-cyan-400 transition hidden md:inline">Briefs</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 flex-1 w-full">
+
+    <!-- HERO SECTION -->
+    <div class="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden glow-cyan border border-slate-800">
+      <div class="absolute -right-16 -top-16 w-72 h-72 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-16 -bottom-16 w-72 h-72 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 max-w-3xl space-y-3">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs bg-dark-850 text-cyan-300 border border-slate-700 mono">
+          <i class="fa-solid fa-bolt text-emerald-400"></i>
+          <span>Thermodynamic Volatility Compression • Orderflow Flux</span>
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Systematic Market Screener & Alpha Architecture
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          High-probability equity setups filtered by relative volume expansion, multi-timeframe structural confluence, and positive mathematical expectancy. Click any candidate below to stream instant live telemetry.
+        </p>
+      </div>
+    </div>
+
+    <!-- QUANT STATS TILES -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="glass-card rounded-xl p-4 border border-slate-800">
+        <div class="text-[11px] text-slate-400 mono">ACTIVE EXPANSIONS</div>
+        <div class="text-2xl font-bold text-white mt-1 mono" id="statActive">6</div>
+        <div class="text-xs text-emerald-400 mt-1 flex items-center">
+          <i class="fa-solid fa-arrow-trend-up mr-1"></i> Net Long Bias
+        </div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border border-slate-800">
+        <div class="text-[11px] text-slate-400 mono">AVG EXPECTANCY (R:R)</div>
+        <div class="text-2xl font-bold text-cyan-400 mt-1 mono">3.2 : 1</div>
+        <div class="text-xs text-slate-400 mt-1">Calculated Asymmetry</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border border-slate-800">
+        <div class="text-[11px] text-slate-400 mono">ENERGY FLUX SECTOR</div>
+        <div class="text-2xl font-bold text-white mt-1 mono">Semis / AI Infra</div>
+        <div class="text-xs text-slate-400 mt-1">High Institutional Momentum</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border border-slate-800">
+        <div class="text-[11px] text-slate-400 mono">DESK REGIME</div>
+        <div class="text-2xl font-bold text-emerald-400 mt-1 mono">Supercritical</div>
+        <div class="text-xs text-slate-400 mt-1">Expansion Above 20/50 EMA</div>
+      </div>
+    </div>
+
+    <!-- SCREENER SECTION -->
+    <section id="screener" class="glass-card rounded-2xl p-6 border border-slate-800">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-6 border-b border-dark-800 gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-crosshairs text-cyan-400"></i> Desk Candidates & Execution Setups
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">Click a ticker row to inspect its live chart and key levels</p>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="filterTable('all')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-dark-950 mono transition" data-filter="all">All (6)</button>
+          <button onclick="filterTable('Breakout')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-850 hover:bg-dark-800 text-slate-300 mono transition" data-filter="Breakout">Breakouts</button>
+          <button onclick="filterTable('Pullback')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-850 hover:bg-dark-800 text-slate-300 mono transition" data-filter="Pullback">Pullbacks</button>
+          <button onclick="filterTable('Momentum')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-850 hover:bg-dark-800 text-slate-300 mono transition" data-filter="Momentum">Momentum</button>
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <div class="overflow-x-auto mt-4">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="text-slate-400 border-b border-dark-800 mono text-xs">
+              <th class="py-3 px-3">TICKER</th>
+              <th class="py-3 px-3">SECTOR</th>
+              <th class="py-3 px-3">CONFLUENCE / SETUP</th>
+              <th class="py-3 px-3">ENTRY</th>
+              <th class="py-3 px-3">TARGET</th>
+              <th class="py-3 px-3">STOP</th>
+              <th class="py-3 px-3">R:R</th>
+              <th class="py-3 px-3">STATUS</th>
+              <th class="py-3 px-3 text-right">ACTION</th>
+            </tr>
+          </thead>
+          <tbody id="screenerTableBody" class="divide-y divide-dark-800/60 font-medium">
+            <!-- Rendered dynamically by app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- LIVE TRADINGVIEW CHART SECTION -->
+    <section id="chart-section" class="glass-card rounded-2xl p-6 border border-slate-800">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-dark-800 gap-2 mb-4">
+        <div>
+          <div class="flex items-center space-x-2">
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-candlestick text-emerald-400"></i> Precision Terminal Feed
+            </h2>
+            <span id="activeChartTickerBadge" class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 mono text-xs font-bold">
+              NASDAQ:NVDA
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">Institutional multi-timeframe analytics streaming via TradingView</p>
+        </div>
+        <div class="text-xs text-slate-400 mono">
+          Click any screener row to project chart levels
+        </div>
+      </div>
+
+      <!-- TRADINGVIEW WIDGET CONTAINER -->
+      <div class="w-full h-[560px] rounded-xl overflow-hidden bg-black/60 border border-slate-800" id="tv_chart_container">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- RESEARCH BRIEFS -->
+    <section id="research" class="space-y-4">
+      <div>
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-microscope text-cyan-400"></i> Quantitative Briefs & Liquidity Theses
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">Prepared by MK-T Alpha Desk • Structural orderflow and macro dynamics</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- CARD 1 -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800 hover:border-cyan-500/40 transition space-y-3">
+          <div class="flex items-center justify-between text-xs mono text-cyan-400">
+            <span>HIGH-ENERGY COMPUTE</span>
+            <span>MACRO FLOW</span>
+          </div>
+          <h3 class="text-base font-bold text-white">Semiconductor Clusters & Optical Interconnects</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Leading cluster breadth remains strong across datacenter infrastructure. Tier-1 hyperscaler capex projections for 2026 continue to expand. Look for volume accumulation on 20-day EMA tests.
+          </p>
+          <div class="pt-2 border-t border-dark-800 flex items-center justify-between text-xs">
+            <span class="text-slate-400 mono">NVDA, AVGO, TSM</span>
+            <span class="text-emerald-400 font-semibold mono">ACCUMULATION</span>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800 hover:border-cyan-500/40 transition space-y-3">
+          <div class="flex items-center justify-between text-xs mono text-cyan-400">
+            <span>VOLATILITY EXPANSION</span>
+            <span>MOMENTUM</span>
+          </div>
+          <h3 class="text-base font-bold text-white">High Short-Interest Breakouts with Volume</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Monitoring names with >15% float shorted breaking multi-month bases with 2.5x average daily volume. Strict stop placement required below pivot low to preserve mathematical edge.
+          </p>
+          <div class="pt-2 border-t border-dark-800 flex items-center justify-between text-xs">
+            <span class="text-slate-400 mono">PLTR, APP, HOOD</span>
+            <span class="text-cyan-400 font-semibold mono">EXPANSION</span>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800 hover:border-cyan-500/40 transition space-y-3">
+          <div class="flex items-center justify-between text-xs mono text-cyan-400">
+            <span>REAL ASSETS & METALS</span>
+            <span>ROTATION</span>
+          </div>
+          <h3 class="text-base font-bold text-white">Electrification Metals & Power Infrastructure</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Copper and uranium maintaining structural uptrends against macroeconomic liquidity cycles. Mining producers showing consistent free cash flow generation and defensive resilience.
+          </p>
+          <div class="pt-2 border-t border-dark-800 flex items-center justify-between text-xs">
+            <span class="text-slate-400 mono">FCX, CCJ, NEM</span>
+            <span class="text-amber-400 font-semibold mono">TRENDING</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-dark-800 bg-dark-900/90 py-8 mt-12 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2">
+        <span class="font-extrabold text-white mono">MK-T ALPHA</span>
+        <span>•</span>
+        <span>Quantitative Research Desk</span>
+        <span>•</span>
+        <span>Market Structure & Asymmetric Setups</span>
+      </div>
+
+      <div class="flex items-center space-x-4 mono">
+        <span class="flex items-center gap-1 text-cyan-400">
+          <i class="fa-solid fa-atom text-emerald-400"></i> Cloudflare Edge Infrastructure
+        </span>
+        <span>•</span>
+        <span>Sub-second Global Telemetry</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
