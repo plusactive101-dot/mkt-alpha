@@ -40,15 +40,15 @@
       font-family: 'JetBrains Mono', monospace;
     }
     .glass-card {
-      background: rgba(16, 23, 42, 0.78);
+      background: rgba(16, 23, 42, 0.80);
       backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glow-cyan {
-      box-shadow: 0 0 30px -5px rgba(0, 240, 255, 0.15);
+      box-shadow: 0 0 35px -5px rgba(0, 240, 255, 0.16);
     }
     .glow-emerald {
-      box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.2);
+      box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.22);
     }
   </style>
 </head>
@@ -67,7 +67,9 @@
           { "description": "Nvidia", "proName": "NASDAQ:NVDA" },
           { "description": "Palantir", "proName": "NASDAQ:PLTR" },
           { "description": "Tesla", "proName": "NASDAQ:TSLA" },
-          { "description": "Bitcoin", "proName": "BINANCE:BTCUSDT" }
+          { "description": "Bitcoin", "proName": "BINANCE:BTCUSDT" },
+          { "description": "Crude Oil", "proName": "CME:CL1!" },
+          { "description": "EUR/USD", "proName": "FX:EURUSD" }
         ],
         "showSymbolLogo": true,
         "isTransparent": true,
@@ -91,10 +93,10 @@
             <span class="font-extrabold text-xl tracking-wider text-white mono">MK-T</span>
             <span class="font-bold text-xl tracking-wide text-cyan-400 mono">ALPHA</span>
             <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 mono uppercase">
-              Trading Desk
+              Quant & ML4T Desk
             </span>
           </div>
-          <p class="text-[11px] text-slate-400 hidden sm:block">Quantitative Market Structure & High-Energy Asymmetry</p>
+          <p class="text-[11px] text-slate-400 hidden sm:block">Quantitative Research Terminal • ML4T 3rd Edition Engine</p>
         </div>
       </div>
 
@@ -102,54 +104,67 @@
       <div class="flex items-center space-x-4 text-xs">
         <div class="flex items-center space-x-2 bg-dark-850 px-3 py-1.5 rounded-full border border-dark-700">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-slate-300 mono" id="lastUpdated">Live Desk Engine</span>
+          <span class="text-slate-300 mono" id="lastUpdated">Evidence Boundary: ACTIVE</span>
         </div>
-        <a href="#screener" class="text-slate-400 hover:text-cyan-400 transition hidden md:inline">Screener</a>
-        <a href="#chart-section" class="text-slate-400 hover:text-cyan-400 transition hidden md:inline">Terminal</a>
+        <a href="#strategy-desk" class="text-slate-400 hover:text-cyan-400 transition hidden md:inline">Strategy Desk</a>
+        <a href="#terminal-view" class="text-slate-400 hover:text-cyan-400 transition hidden md:inline">Terminal</a>
+        <a href="#dsr-calculator" class="text-slate-400 hover:text-cyan-400 transition hidden md:inline">DSR Auditor</a>
+        <a href="#chapters-matrix" class="text-slate-400 hover:text-cyan-400 transition hidden md:inline">27 Chapters</a>
         <a href="#research" class="text-slate-400 hover:text-cyan-400 transition hidden md:inline">Briefs</a>
       </div>
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 flex-1 w-full">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 flex-1 w-full">
 
     <!-- HERO SECTION -->
     <div class="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden glow-cyan border border-slate-800">
-      <div class="absolute -right-16 -top-16 w-72 h-72 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -left-16 -bottom-16 w-72 h-72 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -right-16 -top-16 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-16 -bottom-16 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
       
-      <div class="relative z-10 max-w-3xl space-y-3">
+      <div class="relative z-10 max-w-3xl space-y-4">
         <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs bg-dark-850 text-cyan-300 border border-slate-700 mono">
-          <i class="fa-solid fa-bolt text-emerald-400"></i>
-          <span>Thermodynamic Volatility Compression • Orderflow Flux</span>
+          <i class="fa-solid fa-microchip text-emerald-400"></i>
+          <span>MK-T MegaKelvin Energy-Momentum Tensor • ML4T 3.0 • Polars & PyTorch</span>
         </div>
-        <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Systematic Market Screener & Alpha Architecture
+        <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+          Systematic Market Screener & ML4T Strategy Engine
         </h1>
         <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-          High-probability equity setups filtered by relative volume expansion, multi-timeframe structural confluence, and positive mathematical expectancy. Click any candidate below to stream instant live telemetry.
+          High-probability equity setups, multi-timeframe structural confluences, and 9 end-to-end machine learning case studies. Enforcing an unyielding evidence boundary separating exploration from confirmation.
         </p>
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <button onclick="setDeskMode('casestudies')" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-dark-950 font-bold text-xs mono transition shadow-lg shadow-cyan-500/20">
+            <i class="fa-solid fa-diagram-project mr-1.5"></i> ML4T 9 Case Studies
+          </button>
+          <button onclick="setDeskMode('screener')" class="px-4 py-2 rounded-xl bg-dark-800 hover:bg-dark-700 text-slate-200 border border-slate-700 font-semibold text-xs mono transition">
+            <i class="fa-solid fa-crosshairs mr-1.5"></i> Live Desk Candidates
+          </button>
+          <a href="#dsr-calculator" class="px-4 py-2 rounded-xl bg-dark-800 hover:bg-dark-700 text-slate-200 border border-slate-700 font-semibold text-xs mono transition">
+            <i class="fa-solid fa-calculator mr-1.5"></i> Deflated Sharpe Auditor
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- QUANT STATS TILES -->
+    <!-- QUANT TELEMETRY TILES -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
       <div class="glass-card rounded-xl p-4 border border-slate-800">
-        <div class="text-[11px] text-slate-400 mono">ACTIVE EXPANSIONS</div>
-        <div class="text-2xl font-bold text-white mt-1 mono" id="statActive">6</div>
+        <div class="text-[11px] text-slate-400 mono">RESEARCH PIPELINES</div>
+        <div class="text-2xl font-bold text-white mt-1 mono">9 Multi-Asset</div>
         <div class="text-xs text-emerald-400 mt-1 flex items-center">
-          <i class="fa-solid fa-arrow-trend-up mr-1"></i> Net Long Bias
+          <i class="fa-solid fa-check-circle mr-1"></i> Continuous Walk-Forward
         </div>
       </div>
       <div class="glass-card rounded-xl p-4 border border-slate-800">
-        <div class="text-[11px] text-slate-400 mono">AVG EXPECTANCY (R:R)</div>
-        <div class="text-2xl font-bold text-cyan-400 mt-1 mono">3.2 : 1</div>
-        <div class="text-xs text-slate-400 mt-1">Calculated Asymmetry</div>
+        <div class="text-[11px] text-slate-400 mono">AVG DESK ASYMMETRY</div>
+        <div class="text-2xl font-bold text-cyan-400 mt-1 mono">3.2 : 1 R:R</div>
+        <div class="text-xs text-slate-400 mt-1">Calculated Expectancy</div>
       </div>
       <div class="glass-card rounded-xl p-4 border border-slate-800">
-        <div class="text-[11px] text-slate-400 mono">ENERGY FLUX SECTOR</div>
-        <div class="text-2xl font-bold text-white mt-1 mono">Semis / AI Infra</div>
-        <div class="text-xs text-slate-400 mt-1">High Institutional Momentum</div>
+        <div class="text-[11px] text-slate-400 mono">METHODOLOGY MATRIX</div>
+        <div class="text-2xl font-bold text-white mt-1 mono">27 Chapters</div>
+        <div class="text-xs text-slate-400 mt-1">Polars • DML • Attention</div>
       </div>
       <div class="glass-card rounded-xl p-4 border border-slate-800">
         <div class="text-[11px] text-slate-400 mono">DESK REGIME</div>
@@ -158,82 +173,214 @@
       </div>
     </div>
 
-    <!-- SCREENER SECTION -->
-    <section id="screener" class="glass-card rounded-2xl p-6 border border-slate-800">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-6 border-b border-dark-800 gap-4">
-        <div>
-          <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-crosshairs text-cyan-400"></i> Desk Candidates & Execution Setups
+    <!-- STRATEGY DESK SECTION (UNIFIED TABLE) -->
+    <section id="strategy-desk" class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
+      
+      <!-- MODE TOGGLE HEADER -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-dark-800 gap-4">
+        <div class="space-y-1">
+          <h2 class="text-xl font-bold text-white flex items-center" id="modeTitle">
+            <i class="fa-solid fa-layer-group text-cyan-400 mr-2"></i> ML4T 9 Case Study Pipelines
           </h2>
-          <p class="text-xs text-slate-400 mt-1">Click a ticker row to inspect its live chart and key levels</p>
+          <p class="text-xs text-slate-400" id="modeSubtitle">
+            Cross-asset walk-forward pipelines (ETFs, Crypto Perps, NASDAQ-100, CME Futures, S&P 500)
+          </p>
         </div>
 
-        <!-- FILTERS -->
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="filterTable('all')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-dark-950 mono transition" data-filter="all">All (6)</button>
-          <button onclick="filterTable('Breakout')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-850 hover:bg-dark-800 text-slate-300 mono transition" data-filter="Breakout">Breakouts</button>
-          <button onclick="filterTable('Pullback')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-850 hover:bg-dark-800 text-slate-300 mono transition" data-filter="Pullback">Pullbacks</button>
-          <button onclick="filterTable('Momentum')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-850 hover:bg-dark-800 text-slate-300 mono transition" data-filter="Momentum">Momentum</button>
+        <!-- MODE SWITCHER BUTTONS -->
+        <div class="flex items-center space-x-2 bg-dark-900 p-1 rounded-xl border border-dark-800">
+          <button id="modeBtnCaseStudies" onclick="setDeskMode('casestudies')" class="px-4 py-2 rounded-xl text-xs font-bold bg-cyan-500 text-dark-950 mono transition shadow-md shadow-cyan-500/20">
+            ML4T Pipelines (9)
+          </button>
+          <button id="modeBtnScreener" onclick="setDeskMode('screener')" class="px-4 py-2 rounded-xl text-xs font-semibold bg-dark-850 hover:bg-dark-800 text-slate-300 mono transition border border-dark-700">
+            Desk Candidates (6)
+          </button>
         </div>
       </div>
 
-      <!-- TABLE -->
-      <div class="overflow-x-auto mt-4">
+      <!-- CATEGORY FILTER PILLS -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+        <div class="flex flex-wrap items-center gap-2" id="filterButtonsContainer">
+          <!-- Dynamically populated by app.js -->
+        </div>
+        <div class="text-xs text-slate-400 mono hidden md:block">
+          Click any row to stream live chart & pipeline inspector
+        </div>
+      </div>
+
+      <!-- MAIN DATA TABLE -->
+      <div class="overflow-x-auto mt-2">
         <table class="w-full text-left border-collapse text-xs sm:text-sm">
-          <thead>
-            <tr class="text-slate-400 border-b border-dark-800 mono text-xs">
-              <th class="py-3 px-3">TICKER</th>
-              <th class="py-3 px-3">SECTOR</th>
-              <th class="py-3 px-3">CONFLUENCE / SETUP</th>
-              <th class="py-3 px-3">ENTRY</th>
-              <th class="py-3 px-3">TARGET</th>
-              <th class="py-3 px-3">STOP</th>
-              <th class="py-3 px-3">R:R</th>
-              <th class="py-3 px-3">STATUS</th>
-              <th class="py-3 px-3 text-right">ACTION</th>
-            </tr>
+          <thead id="mainTableHead">
+            <!-- Dynamically populated by app.js -->
           </thead>
-          <tbody id="screenerTableBody" class="divide-y divide-dark-800/60 font-medium">
-            <!-- Rendered dynamically by app.js -->
+          <tbody id="mainTableBody" class="divide-y divide-dark-800/60 font-medium">
+            <!-- Dynamically populated by app.js -->
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- LIVE TRADINGVIEW CHART SECTION -->
-    <section id="chart-section" class="glass-card rounded-2xl p-6 border border-slate-800">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-dark-800 gap-2 mb-4">
+    <!-- DUAL PRECISION TERMINAL & PIPELINE INSPECTOR -->
+    <section id="terminal-view" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- LEFT: LIVE TRADINGVIEW FEED -->
+      <div class="lg:col-span-7 glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-dark-800 gap-2 mb-4">
+          <div>
+            <div class="flex items-center space-x-2">
+              <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-chart-candlestick text-emerald-400"></i> Precision Terminal Feed
+              </h2>
+              <span id="activeChartTickerBadge" class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 mono text-xs font-bold truncate max-w-xs">
+                Multi-Asset ETF Momentum (AMEX:SPY)
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">Multi-timeframe candlestick feed with interactive indicator studies</p>
+          </div>
+        </div>
+
+        <div class="w-full h-[520px] rounded-xl overflow-hidden bg-black/60 border border-slate-800" id="tv_chart_container">
+          <iframe 
+            id="tv_chart_iframe"
+            src="https://www.tradingview.com/widgetembed/?symbol=AMEX%3ASPY&interval=D&symboledit=1&saveimage=1&toolbarbg=0a0f1d&studies=%5B%22MASimple%40tv-basicstudies%22%2C%22RSI%40tv-basicstudies%22%2C%22Volume%40tv-basicstudies%22%5D&theme=dark&style=1&timezone=Etc%2FUTC&locale=en" 
+            style="width: 100%; height: 100%; border: none; border-radius: 12px; display: block;" 
+            frameborder="0" 
+            allowtransparency="true" 
+            scrolling="no" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <!-- RIGHT: STAGE-BY-STAGE PIPELINE INSPECTOR -->
+      <div class="lg:col-span-5 glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between space-y-4">
+        <div class="pb-3 border-b border-dark-800">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-code-commit text-cyan-400"></i> Execution Stages & Architecture
+            </h3>
+            <span class="px-2 py-0.5 rounded bg-dark-800 text-slate-300 mono text-[10px] border border-dark-700">Content-Addressed</span>
+          </div>
+          <div class="text-sm font-bold text-cyan-300 mt-1" id="pipelineInspectorTitle">CS-01: Multi-Asset ETF Momentum</div>
+          <p class="text-xs text-slate-400" id="pipelineInspectorSubtitle">100 Liquid ETFs • Target: fwd_ret_21d (1-Month)</p>
+        </div>
+
+        <div class="space-y-3 overflow-y-auto max-h-[460px] pr-1" id="pipelineInspectorContainer">
+          <!-- Dynamically populated by app.js -->
+        </div>
+
+        <div class="pt-3 border-t border-dark-800 text-xs text-slate-400 flex items-center justify-between mono">
+          <span>Run logs recorded in SQLite:</span>
+          <code class="text-cyan-400">run_log/registry.db</code>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- DEFLATED SHARPE RATIO (DSR) AUDITOR CALCULATOR -->
+    <section id="dsr-calculator" class="glass-card rounded-2xl p-6 border border-slate-800 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-dark-800 gap-4">
         <div>
           <div class="flex items-center space-x-2">
             <h2 class="text-xl font-bold text-white flex items-center gap-2">
-              <i class="fa-solid fa-chart-candlestick text-emerald-400"></i> Precision Terminal Feed
+              <i class="fa-solid fa-scale-balanced text-amber-400"></i> Evidence Boundary: Deflated Sharpe Ratio (DSR) Auditor
             </h2>
-            <span id="activeChartTickerBadge" class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 mono text-xs font-bold">
-              NASDAQ:NVDA
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30 mono text-[10px] font-bold">
+              Ch 20.4 Multiple-Testing Control
             </span>
           </div>
-          <p class="text-xs text-slate-400 mt-1">Institutional multi-timeframe analytics streaming via TradingView</p>
+          <p class="text-xs text-slate-400 mt-1">
+            Compute whether an observed backtest Sharpe ratio represents real mathematical edge or is merely the maximum of $N$ random trials.
+          </p>
         </div>
-        <div class="text-xs text-slate-400 mono">
-          Click any screener row to project chart levels
+        <div id="dsr_verdict_badge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mono">
+          PASSED: Statistically Significant Edge
         </div>
       </div>
 
-      <!-- TRADINGVIEW WIDGET CONTAINER -->
-      <div class="w-full h-[600px] rounded-xl overflow-hidden bg-black/60 border border-slate-800" id="tv_chart_container">
-        <iframe 
-          id="tv_chart_iframe"
-          src="https://www.tradingview.com/widgetembed/?symbol=NASDAQ%3ANVDA&interval=D&symboledit=1&saveimage=1&toolbarbg=0a0f1d&studies=%5B%22MASimple%40tv-basicstudies%22%2C%22RSI%40tv-basicstudies%22%2C%22Volume%40tv-basicstudies%22%5D&theme=dark&style=1&timezone=Etc%2FUTC&locale=en" 
-          style="width: 100%; height: 100%; border: none; border-radius: 12px; display: block;" 
-          frameborder="0" 
-          allowtransparency="true" 
-          scrolling="no" 
-          allowfullscreen>
-        </iframe>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div class="space-y-1">
+          <label class="text-xs text-slate-400 mono">Observed Sharpe Ratio (SR)</label>
+          <input type="number" id="dsr_sr" step="0.1" value="1.42" oninput="calculateDSR()" class="w-full px-3 py-2 rounded-lg bg-dark-900 border border-dark-700 text-white mono text-sm focus:border-cyan-400 outline-none">
+          <span class="text-[10px] text-slate-500">Annualized backtest return</span>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs text-slate-400 mono">Trials Tested (N)</label>
+          <input type="number" id="dsr_trials" step="5" value="50" oninput="calculateDSR()" class="w-full px-3 py-2 rounded-lg bg-dark-900 border border-dark-700 text-white mono text-sm focus:border-cyan-400 outline-none">
+          <span class="text-[10px] text-slate-500">Hyperparameter iterations</span>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs text-slate-400 mono">Track Length (Years)</label>
+          <input type="number" id="dsr_years" step="0.5" value="5.0" oninput="calculateDSR()" class="w-full px-3 py-2 rounded-lg bg-dark-900 border border-dark-700 text-white mono text-sm focus:border-cyan-400 outline-none">
+          <span class="text-[10px] text-slate-500">Backtest test horizon</span>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs text-slate-400 mono">Return Skewness (γ₃)</label>
+          <input type="number" id="dsr_skew" step="0.1" value="-0.2" oninput="calculateDSR()" class="w-full px-3 py-2 rounded-lg bg-dark-900 border border-dark-700 text-white mono text-sm focus:border-cyan-400 outline-none">
+          <span class="text-[10px] text-slate-500">Negative = tail risk</span>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs text-slate-400 mono">Return Kurtosis (γ₄)</label>
+          <input type="number" id="dsr_kurtosis" step="0.2" value="3.8" oninput="calculateDSR()" class="w-full px-3 py-2 rounded-lg bg-dark-900 border border-dark-700 text-white mono text-sm focus:border-cyan-400 outline-none">
+          <span class="text-[10px] text-slate-500">Fat tails (normal = 3.0)</span>
+        </div>
+      </div>
+
+      <!-- DSR RESULTS BOX -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-dark-800">
+        <div class="p-4 rounded-xl bg-dark-900 border border-dark-800">
+          <div class="text-[11px] text-slate-400 mono">EXPECTED NULL MAXIMUM E[max SR]</div>
+          <div class="text-2xl font-bold text-amber-400 mt-1 mono" id="res_max_sr">0.82</div>
+          <div class="text-xs text-slate-400 mt-1">Expected score from pure luck under N trials</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-dark-900 border border-dark-800">
+          <div class="text-[11px] text-slate-400 mono">STANDARDIZED Z-SCORE</div>
+          <div class="text-2xl font-bold text-cyan-400 mt-1 mono" id="res_z_score">2.14</div>
+          <div class="text-xs text-slate-400 mt-1">Asymptotic normal test statistic</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-dark-900 border border-dark-800">
+          <div class="text-[11px] text-slate-400 mono">DEFLATED SHARPE CONFIDENCE</div>
+          <div class="text-2xl font-bold text-emerald-400 mt-1 mono" id="res_confidence">98.4%</div>
+          <div class="text-xs text-slate-400 mt-1">Probability true Sharpe > 0 (DSR p-value)</div>
+        </div>
       </div>
     </section>
 
-    <!-- RESEARCH BRIEFS -->
+    <!-- 27-CHAPTER ARCHITECTURE MATRIX -->
+    <section id="chapters-matrix" class="glass-card rounded-2xl p-6 border border-slate-800 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-dark-800 gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-cyan-400"></i> The 27-Chapter Methodological Matrix
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">Structured across 5 systematic pillars: Data, Features, Modeling, Backtesting, and Production</p>
+        </div>
+
+        <!-- SEARCH BAR -->
+        <div class="relative w-full sm:w-72">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-500 text-xs"></i>
+          <input 
+            type="text" 
+            id="chapterSearchInput" 
+            placeholder="Search chapters, models, topics..." 
+            class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-xs text-white placeholder-slate-500 focus:border-cyan-400 outline-none mono transition"
+          >
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="chaptersGridContainer">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- QUANTITATIVE BRIEFS & THESES -->
     <section id="research" class="space-y-4">
       <div>
         <h2 class="text-xl font-bold text-white flex items-center gap-2">
@@ -303,17 +450,17 @@
       <div class="flex items-center space-x-2">
         <span class="font-extrabold text-white mono">MK-T ALPHA</span>
         <span>•</span>
-        <span>Quantitative Research Desk</span>
+        <span>Quantitative Research Terminal</span>
         <span>•</span>
-        <span>Market Structure & Asymmetric Setups</span>
+        <span>ML4T 3rd Edition Engine</span>
       </div>
 
       <div class="flex items-center space-x-4 mono">
         <span class="flex items-center gap-1 text-cyan-400">
-          <i class="fa-solid fa-atom text-emerald-400"></i> Cloudflare Edge Infrastructure
+          <i class="fa-solid fa-atom text-emerald-400"></i> Cloudflare Edge Network (`mkt-alpha.pages.dev`)
         </span>
         <span>•</span>
-        <span>Sub-second Global Telemetry</span>
+        <span>PC1 Compute Engine (`mk-invaderpc`)</span>
       </div>
     </div>
   </footer>
