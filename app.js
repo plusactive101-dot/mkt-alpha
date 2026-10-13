@@ -148,6 +148,12 @@ function selectTicker(tvSymbol, ticker) {
   if (badge) badge.innerText = tvSymbol;
   renderTable();
   loadTradingViewChart(tvSymbol);
+
+  // Smooth scroll to chart on mobile/tablet
+  const chartSection = document.getElementById('chart-section');
+  if (chartSection && window.innerWidth < 1024) {
+    chartSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 }
 
 // Filter button toggle
@@ -163,47 +169,33 @@ function filterTable(filter) {
   renderTable();
 }
 
-// Load Advanced Real-Time TradingView Candlestick Chart
+// Load Advanced Real-Time TradingView Candlestick Chart via direct iframe
 function loadTradingViewChart(symbol) {
-  const container = document.getElementById('tv_chart_container');
-  if (!container) return;
+  const badge = document.getElementById('activeChartTickerBadge');
+  if (badge) badge.innerText = symbol;
 
-  container.innerHTML = `
-    <div class="tradingview-widget-container" style="height:100%;width:100%">
-      <div id="tradingview_${Math.random().toString(36).substring(7)}" style="height:100%;width:100%"></div>
-    </div>
-  `;
+  const encodedSymbol = encodeURIComponent(symbol);
+  const chartUrl = `https://www.tradingview.com/widgetembed/?symbol=${encodedSymbol}&interval=D&symboledit=1&saveimage=1&toolbarbg=0a0f1d&studies=%5B%22MASimple%40tv-basicstudies%22%2C%22RSI%40tv-basicstudies%22%2C%22Volume%40tv-basicstudies%22%5D&theme=dark&style=1&timezone=Etc%2FUTC&locale=en`;
 
-  const chartDiv = container.querySelector('div > div');
-
-  const script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = 'https://s3.tradingview.com/tv.js';
-  script.async = true;
-  script.onload = () => {
-    if (typeof TradingView !== 'undefined') {
-      new TradingView.widget({
-        "autosize": true,
-        "symbol": symbol,
-        "interval": "D",
-        "timezone": "Etc/UTC",
-        "theme": "dark",
-        "style": "1",
-        "locale": "en",
-        "toolbar_bg": "#0a0f1d",
-        "enable_publishing": false,
-        "allow_symbol_change": true,
-        "container_id": chartDiv.id,
-        "studies": [
-          "MASimple@tv-basicstudies",
-          "RSI@tv-basicstudies",
-          "Volume@tv-basicstudies"
-        ],
-        "hide_side_toolbar": false
-      });
+  const iframe = document.getElementById('tv_chart_iframe');
+  if (iframe) {
+    iframe.src = chartUrl;
+  } else {
+    const container = document.getElementById('tv_chart_container');
+    if (container) {
+      container.innerHTML = `
+        <iframe 
+          id="tv_chart_iframe"
+          src="${chartUrl}" 
+          style="width: 100%; height: 100%; border: none; border-radius: 12px; display: block;" 
+          frameborder="0" 
+          allowtransparency="true" 
+          scrolling="no" 
+          allowfullscreen>
+        </iframe>
+      `;
     }
-  };
-  container.appendChild(script);
+  }
 }
 
 // Initialize on page load
