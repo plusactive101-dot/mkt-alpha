@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-10-14",
+  "indicators": [
+    {
+      "slug": "volatility_stop",
+      "name": "Volatility Stop",
+      "category": "Volatility",
+      "subcategories": ["Trend", "Trailing_Stop"],
+      "source_platform": "cTrader (C#)",
+      "version": "1.0.0",
+      "path": "./volatility_stop",
+      "description": "ATR-based dynamic trailing stop indicator with volatility ratchet (ratchets stop tighter as volatility contracts or price advances). Flips between bullish support line and bearish resistance line."
+    }
+  ]
+}

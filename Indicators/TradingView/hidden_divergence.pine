@@ -1,0 +1,120 @@
+//@version=5
+indicator("MK Hidden & Regular Divergence", overlay=true)
+
+// Parameters
+periodK       = input.int(10, "Stoch %K Period", minval=1)
+smoothK       = input.int(10, "Stoch %K Smooth", minval=1)
+periodD       = input.int(3, "Stoch %D Period", minval=1)
+lookback      = input.int(3, "Swing Lookback", minval=1)
+lookahead     = input.int(3, "Swing Lookahead", minval=1)
+priceWin      = input.int(4, "Price Search Window", minval=1)
+minDist       = input.int(4, "Min Bars Between Swings", minval=1)
+maxDist       = input.int(45, "Max Bars Between Swings", minval=1)
+minStochDiff  = input.float(2.0, "Min Stoch Delta", minval=0.0)
+
+// Calculate Stochastics
+rawK = ta.stoch(close, high, low, periodK)
+k = ta.sma(rawK, smoothK)
+d = ta.sma(k, periodD)
+
+// Swing detection (lagged by lookahead bars)
+swingBar = bar_index - lookahead
+ki = k[lookahead]
+
+isPeak = ki > 45.0
+if isPeak
+    for j = 1 to lookback
+        if ki <= k[lookahead + j]
+            isPeak := false
+            break
+    if isPeak
+        for j = 1 to lookahead
+            if ki < k[lookahead - j]
+                isPeak := false
+                break
+
+isTrough = ki < 55.0
+if isTrough
+    for j = 1 to lookback
+        if ki >= k[lookahead + j]
+            isTrough := false
+            break
+    if isTrough
+        for j = 1 to lookahead
+            if ki > k[lookahead - j]
+                isTrough := false
+                break
+
+var int lastPeakSBar = na
+var float lastPeakSVal = na
+var int lastPeakPBar = na
+var float lastPeakPVal = na
+
+var int lastTroughSBar = na
+var float lastTroughSVal = na
+var int lastTroughPBar = na
+var float lastTroughPVal = na
+
+var int sig = 0
+sig := 0
+
+if isPeak
+    // Find highest high in price window
+    int bestPBar = swingBar
+    float bestH = high[lookahead]
+    for w = -priceWin to priceWin
+        int offset = lookahead - w
+        if offset >= 0 and high[offset] > bestH
+            bestH := high[offset]
+            bestPBar := bar_index - offset
+
+    if not na(lastPeakSBar)
+        int sDist = swingBar - lastPeakSBar
+        int pDist = math.abs(bestPBar - lastPeakPBar)
+        if sDist >= minDist and sDist <= maxDist and pDist >= minDist
+            float pDelta = bestH - lastPeakPVal
+            float sDelta = ki - lastPeakSVal
+            if pDelta < 0 and sDelta > minStochDiff
+                sig := -1 // Hidden Bearish
+                line.new(lastPeakPBar, lastPeakPVal, bestPBar, bestH, color=color.cyan, width=2)
+            else if pDelta > 0 and sDelta < -minStochDiff
+                sig := -2 // Regular Bearish
+                line.new(lastPeakPBar, lastPeakPVal, bestPBar, bestH, color=color.orange, width=2, style=line.style_dashed)
+
+    lastPeakSBar := swingBar
+    lastPeakSVal := ki
+    lastPeakPBar := bestPBar
+    lastPeakPVal := bestH
+
+if isTrough
+    // Find lowest low in price window
+    int bestPBar = swingBar
+    float bestL = low[lookahead]
+    for w = -priceWin to priceWin
+        int offset = lookahead - w
+        if offset >= 0 and low[offset] < bestL
+            bestL := low[offset]
+            bestPBar := bar_index - offset
+
+    if not na(lastTroughSBar)
+        int sDist = swingBar - lastTroughSBar
+        int pDist = math.abs(bestPBar - lastTroughPBar)
+        if sDist >= minDist and sDist <= maxDist and pDist >= minDist
+            float pDelta = bestL - lastTroughPVal
+            float sDelta = ki - lastTroughSVal
+            if pDelta > 0 and sDelta < -minStochDiff
+                sig := 1 // Hidden Bullish
+                line.new(lastTroughPBar, lastTroughPVal, bestPBar, bestL, color=color.cyan, width=2)
+            else if pDelta < 0 and sDelta > minStochDiff
+                sig := 2 // Regular Bullish
+                line.new(lastTroughPBar, lastTroughPVal, bestPBar, bestL, color=color.lime, width=2, style=line.style_dashed)
+
+    lastTroughSBar := swingBar
+    lastTroughSVal := ki
+    lastTroughPBar := bestPBar
+    lastTroughPVal := bestL
+
+plotshape(sig == 1, title="Hidden Bull", style=shape.triangleup, location=location.belowbar, color=color.cyan, size=size.small)
+plotshape(sig == -1, title="Hidden Bear", style=shape.triangledown, location=location.abovebar, color=color.cyan, size=size.small)
+plotshape(sig == 2, title="Regular Bull", style=shape.triangleup, location=location.belowbar, color=color.lime, size=size.small)
+plotshape(sig == -2, title="Regular Bear", style=shape.triangledown, location=location.abovebar, color=color.orange, size=size.small)

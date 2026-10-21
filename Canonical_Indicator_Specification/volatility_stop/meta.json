@@ -1,0 +1,197 @@
+{
+  "name": "Volatility Stop",
+  "slug": "volatility_stop",
+  "category": "Volatility",
+  "subcategories": ["Trend", "Trailing_Stop"],
+  "version": "1.0.0",
+  "source_platform": "cTrader (C#)",
+  "source_file": "original_source.cs",
+  "description": "ATR-based dynamic trailing stop indicator with volatility ratchet (ratchets stop tighter as volatility contracts or price advances). Flips between bullish support line and bearish resistance line.",
+  "inputs": [
+    {
+      "name": "period",
+      "display_name": "ATR Period",
+      "type": "integer",
+      "default": 20,
+      "min": 1,
+      "max": 500,
+      "description": "Lookback period for Average True Range calculation"
+    },
+    {
+      "name": "multiplier",
+      "display_name": "ATR Multiplier",
+      "type": "float",
+      "default": 3.0,
+      "min": 0.1,
+      "max": 20.0,
+      "step": 0.1,
+      "description": "Multiplier factor applied to the ATR to calculate the trailing stop distance"
+    },
+    {
+      "name": "ma_type",
+      "display_name": "ATR Moving Average Type",
+      "type": "string",
+      "default": "SMA",
+      "options": ["SMA", "EMA", "RMA"],
+      "description": "Smoothing method used inside ATR (SMA is standard in cTrader; RMA/Wilder is standard in TradingView)"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "stop",
+      "display_name": "Stop Line",
+      "type": "series_float",
+      "description": "Active trailing stop price line (lower support when bullish, upper resistance when bearish)"
+    },
+    {
+      "name": "is_bullish",
+      "display_name": "Bullish Trend State",
+      "type": "series_bool",
+      "description": "True when in uptrend, False when in downtrend"
+    },
+    {
+      "name": "bullish_stop",
+      "display_name": "Bullish Stop Plot",
+      "type": "series_float",
+      "plot_style": "DiscontinuousLine",
+      "color_hint": "LimeGreen",
+      "description": "Bullish trailing stop plot line; NaN during downtrends"
+    },
+    {
+      "name": "bearish_stop",
+      "display_name": "Bearish Stop Plot",
+      "type": "series_float",
+      "plot_style": "DiscontinuousLine",
+      "color_hint": "Crimson",
+      "description": "Bearish trailing stop plot line; NaN during uptrends"
+    },
+    {
+      "name": "trend_flip",
+      "display_name": "Trend Flip Signal",
+      "type": "series_int",
+      "values": {
+        "1": "Bearish to Bullish Flip",
+        "-1": "Bullish to Bearish Flip",
+        "0": "No Trend Change"
+      },
+      "description": "Signal flag fired on the bar where trend direction flips"
+    }
+  ],
+  "test_vectors": {
+    "parameters": {
+      "period": 3,
+      "multiplier": 2.0,
+      "ma_type": "SMA"
+    },
+    "data": [
+      {
+        "index": 0,
+        "high": 105.0,
+        "low": 103.0,
+        "close": 104.5,
+        "expected_stop": 100.5,
+        "expected_is_bullish": true,
+        "expected_trend_flip": 0
+      },
+      {
+        "index": 1,
+        "high": 106.0,
+        "low": 104.0,
+        "close": 105.5,
+        "expected_stop": 101.5,
+        "expected_is_bullish": true,
+        "expected_trend_flip": 0
+      },
+      {
+        "index": 2,
+        "high": 107.0,
+        "low": 105.0,
+        "close": 106.5,
+        "expected_stop": 102.5,
+        "expected_is_bullish": true,
+        "expected_trend_flip": 0
+      },
+      {
+        "index": 3,
+        "high": 108.0,
+        "low": 106.0,
+        "close": 107.0,
+        "expected_stop": 103.0,
+        "expected_is_bullish": true,
+        "expected_trend_flip": 0
+      },
+      {
+        "index": 4,
+        "high": 107.5,
+        "low": 105.0,
+        "close": 105.5,
+        "expected_stop": 103.0,
+        "expected_is_bullish": true,
+        "expected_trend_flip": 0
+      },
+      {
+        "index": 5,
+        "high": 106.0,
+        "low": 103.5,
+        "close": 104.0,
+        "expected_stop": 103.0,
+        "expected_is_bullish": true,
+        "expected_trend_flip": 0
+      },
+      {
+        "index": 6,
+        "high": 104.0,
+        "low": 101.5,
+        "close": 102.0,
+        "expected_stop": 107.0,
+        "expected_is_bullish": false,
+        "expected_trend_flip": -1
+      },
+      {
+        "index": 7,
+        "high": 102.0,
+        "low": 99.0,
+        "close": 99.5,
+        "expected_stop": 104.8333,
+        "expected_is_bullish": false,
+        "expected_trend_flip": 0
+      },
+      {
+        "index": 8,
+        "high": 101.0,
+        "low": 98.5,
+        "close": 100.5,
+        "expected_stop": 104.8333,
+        "expected_is_bullish": false,
+        "expected_trend_flip": 0
+      },
+      {
+        "index": 9,
+        "high": 103.0,
+        "low": 100.0,
+        "close": 102.5,
+        "expected_stop": 104.8333,
+        "expected_is_bullish": false,
+        "expected_trend_flip": 0
+      },
+      {
+        "index": 10,
+        "high": 105.0,
+        "low": 102.0,
+        "close": 104.8,
+        "expected_stop": 104.8333,
+        "expected_is_bullish": false,
+        "expected_trend_flip": 0
+      },
+      {
+        "index": 11,
+        "high": 108.0,
+        "low": 105.5,
+        "close": 107.5,
+        "expected_stop": 101.3667,
+        "expected_is_bullish": true,
+        "expected_trend_flip": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+//@version=5
+indicator("MK Volatility Stop", overlay=true)
+
+period = input.int(20, title="ATR Period", minval=1)
+multiplier = input.float(3.0, title="ATR Multiplier", minval=0.1, step=0.1)
+
+// ATR calculation (TradingView uses RMA by default, or change to ta.sma)
+atr = ta.sma(ta.tr, period)
+
+var bool isBullish = true
+var float lower = na
+var float upper = na
+
+c0 = close
+a0 = na(atr) ? (high - low) : atr
+a1 = nz(atr[1], a0)
+
+if bar_index == 0
+    isBullish := true
+    lower := c0 - multiplier * a0
+    upper := c0 + multiplier * a0
+else
+    prevTrend = isBullish
+    prevLower = lower
+    prevUpper = upper
+    
+    if not prevTrend and c0 > prevUpper
+        isBullish := true
+        lower := c0 - multiplier * a0
+    else if prevTrend and c0 < prevLower
+        isBullish := false
+        upper := c0 + multiplier * a0
+    else if isBullish
+        cand1 = c0 - multiplier * a0
+        cand2 = prevLower + multiplier * (a1 - a0)
+        lower := math.max(prevLower, math.max(cand1, cand2))
+    else
+        cand1 = c0 + multiplier * a0
+        cand2 = prevUpper - multiplier * (a1 - a0)
+        upper := math.min(prevUpper, math.min(cand1, cand2))
+
+bullStop = isBullish ? lower : na
+bearStop = not isBullish ? upper : na
+
+plot(bullStop, title="Bullish Stop", color=color.green, style=plot.style_linebr, linewidth=2)
+plot(bearStop, title="Bearish Stop", color=color.red, style=plot.style_linebr, linewidth=2)

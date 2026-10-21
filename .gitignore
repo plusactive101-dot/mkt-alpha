@@ -1,0 +1,8 @@
+.agents/
+.gemini/
+.obsidian/
+.stfolder/
+.stignore*
+__pycache__/
+*.pyc
+.stglobalignore
